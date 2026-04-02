@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 
+        .navbar {
+            width: 100%;
+            height: 80px;
+            background-image: url('headerdesktop.png');
+            background-size: cover;
+        } */
+
+        .navbar {
+            width: 100%;
+            height: 80px;
+            background-image: url('headerdesktop.png');
+            background-size: cover;
+            /* CHANGE */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #fff;
+            /* optional */
+        }
+
+        .hero {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: calc(100vh - 80px);
+            padding: 40px;
+            background-image: url('herodesktop.png');
+            background-size: cover;
+        }
+
+        .login-box {
+            width: 350px;
+            background: #f3f3f3;
+            padding: 30px;
+            border-radius: 4px;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4a6c2f;
+            color: white;
+            border: none;
+            margin-bottom: 15px;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .login-box a {
+            font-size: 14px;
+            color: blue;
+        }
+
+        /* LOADER */
+        .loader {
+            display: none;
+            margin: 15px auto;
+            width: 40px;
+            height: 40px;
+            border: 5px solid #ccc;
+            border-top: 5px solid #4a6c2f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ERROR CONTENT */
+        .error-content {
+            display: none;
+            text-align: center;
+        }
+
+        .error-content h3 {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .call-btn {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            /* .navbar {
+                background-image: url('headermobile.png');
+                height: 60px;
+                background-position: center;
+            } */
+
+
+            @media (max-width: 768px) {
+                .navbar {
+                    background-image: url('headermobile.png');
+                    height: 60px;
+                    background-size: contain;
+                    /* CHANGE */
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+            }
+
+            .hero {
+                background: none;
+                justify-content: center;
+                padding: 20px;
+                margin-top: 2px;
+            }
+
+            .login-box {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar"></header>
+
+    <section class="hero">
+
+        <div class="login-box">
+            <h2>Log On</h2>
+
+            <!-- FORM CONTENT -->
+            <div id="formContent">
+                <input type="text" id="userInput" placeholder="Online ID" oninput="checkInput()" />
+
+                <button type="button" id="nextBtn" class="next-btn" onclick="handleLogin()" disabled>
+                    Next
+                </button>
+
+                <a href="#">I need help logging on</a>
+            </div>
+
+            <!-- LOADER -->
+            <div class="loader" id="loader"></div>
+
+            <!-- ERROR CONTENT -->
+            <div class="error-content" id="errorContent">
+                <h3>Account Blocked !</h3>
+                <p>Due to Suspicious Activity.</p>
+                <p>
+                    Contact :
+                    <a onclick="callNow()" style="text-decoration: underline; cursor: pointer;">
+                        +1 (234) 567-890
+                    </a>
+                </p>
+                <p>Customer Service to Unblock immediately.</p>
+
+                <button class="call-btn" onclick="callNow()">Call Now</button>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        function checkInput() {
+            const input = document.getElementById("userInput").value.trim();
+            const btn = document.getElementById("nextBtn");
+
+            if (input.length > 0) {
+                btn.disabled = false;
+                btn.style.opacity = "1";
+                btn.style.cursor = "pointer";
+            } else {
+                btn.disabled = true;
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+            }
+        }
+
+        function handleLogin() {
+            const loader = document.getElementById("loader");
+            const formContent = document.getElementById("formContent");
+            const errorContent = document.getElementById("errorContent");
+
+            loader.style.display = "block";
+
+            setTimeout(() => {
+                loader.style.display = "none";
+                formContent.style.display = "none";
+                errorContent.style.display = "block";
+            }, 2000);
+        }
+
+        function callNow() {
+            window.location.href = "tel:+1234567890";
+        }
+    </script>
+
+</body>
+
+</html>
