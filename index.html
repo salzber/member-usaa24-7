@@ -34,6 +34,8 @@
             /* optional */
         }
 
+
+
         .hero {
             display: flex;
             justify-content: flex-end;
@@ -118,6 +120,20 @@
             font-weight: bold;
         }
 
+        .navbar {
+            width: 100%;
+        }
+
+        .nav-img {
+            width: 100%;
+            display: block;
+        }
+
+        .mobile-img {
+            display: none;
+        }
+
+
         /* MOBILE */
         @media (max-width: 768px) {
             /* .navbar {
@@ -126,6 +142,13 @@
                 background-position: center;
             } */
 
+            .desktop-img {
+                display: none;
+            }
+
+            .mobile-img {
+                display: block;
+            }
 
             @media (max-width: 768px) {
                 .navbar {
@@ -155,7 +178,10 @@
 
 <body>
 
-    <header class="navbar"></header>
+    <header class="navbar">
+        <img src="headerdesktop.png" class="nav-img desktop-img">
+        <img src="headermobile.png" class="nav-img mobile-img">
+    </header>
 
     <section class="hero">
 
